@@ -1,0 +1,424 @@
+/* ============================================================
+   Стилистика скопирована с tesla.com
+   Три точных цвета донора:
+     #171A20 — фирменный тёмный (текст, панель вкладок)
+     #F4F4F4 — светло-серый фон карточек и полей
+     #3E6AE1 — синий цвет кнопок Tesla (hover: #3457B2)
+   Форма карточек: скругление 8px, без обводки и тени
+   Шрифт: Inter как открытый аналог Gotham SSm
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  color: #171A20;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #F4F4F4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Портретная развёртка под телефон.
+   Размеры фиксированные: при изменении окна меняется только центрирование. */
+.screen {
+  position: relative;
+  width: 375px;
+  height: 667px;
+  overflow: hidden;
+  background: #FFFFFF;
+}
+
+/* ---------- Панель вкладок ---------- */
+
+.tabbar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 72px;
+  display: flex;
+  background: #171A20;
+  z-index: 3;
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 500;
+  color: #8E8E93;
+}
+
+.tab svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: #8E8E93;
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+
+.tab span {
+  color: inherit;
+}
+
+.tab:hover,
+.tab-active {
+  color: #FFFFFF;
+}
+
+.tab:hover svg,
+.tab-active svg {
+  stroke: #FFFFFF;
+}
+
+/* ---------- Лента ---------- */
+
+.feed {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.feed-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: #5C5E62;
+}
+
+/* Вся информация и кнопки лежат поверх видео */
+.feed-overlay {
+  position: absolute;
+  left: 0;
+  bottom: 72px;
+  width: 100%;
+  padding: 24px 20px 20px;
+  background: linear-gradient(to top, rgba(23, 26, 32, 0.88), rgba(23, 26, 32, 0));
+  z-index: 2;
+}
+
+.feed-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.feed-description {
+  margin-top: 10px;
+}
+
+.feed-description summary {
+  font-size: 13px;
+  color: #FFFFFF;
+  cursor: pointer;
+  list-style: none;
+}
+
+.feed-description summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Свёрнуто: две строки описания и «больше».
+   Развёрнуто: полный текст и «меньше». Без JavaScript. */
+.desc-preview {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.5;
+  color: #F4F4F4;
+}
+
+.desc-more,
+.desc-less {
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.desc-less {
+  display: none;
+}
+
+.feed-description[open] .desc-preview,
+.feed-description[open] .desc-more {
+  display: none;
+}
+
+.feed-description[open] .desc-less {
+  display: inline;
+}
+
+.feed-description summary:hover .desc-more,
+.feed-description summary:hover .desc-less {
+  color: #3E6AE1;
+}
+
+.desc-full {
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #F4F4F4;
+}
+
+.feed-params {
+  display: flex;
+  gap: 28px;
+  margin-top: 16px;
+}
+
+.feed-param dt {
+  font-size: 11px;
+  color: #C8C9CC;
+}
+
+.feed-param dd {
+  margin-top: 2px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.feed-actions {
+  position: absolute;
+  right: 16px;
+  bottom: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  z-index: 2;
+}
+
+.like {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.like svg {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: #FFFFFF;
+  stroke-width: 1.6;
+}
+
+.like b {
+  font-size: 13px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.next-button {
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: #3E6AE1;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.next-button:hover {
+  background: #3457B2;
+}
+
+/* ---------- Заголовки страниц ---------- */
+
+.page-title {
+  font-size: 22px;
+  font-weight: 600;
+  padding: 24px 20px 12px;
+}
+
+/* ---------- Страница добавления ---------- */
+
+.draft {
+  width: 100%;
+  height: calc(100% - 72px);
+  overflow-y: auto;
+  background: #FFFFFF;
+}
+
+.field-group {
+  padding: 8px 20px 16px;
+}
+
+.group-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #5C5E62;
+  margin-bottom: 10px;
+}
+
+.field {
+  display: block;
+  margin-bottom: 14px;
+}
+
+.field-label {
+  display: block;
+  font-size: 12px;
+  color: #5C5E62;
+  margin-bottom: 6px;
+}
+
+.field-image,
+.field-video {
+  width: 100%;
+  height: 180px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #F4F4F4;
+  display: block;
+}
+
+.field-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #F4F4F4;
+  font-size: 14px;
+}
+
+.field-textarea {
+  resize: none;
+  line-height: 1.5;
+}
+
+.draft-status {
+  padding: 0 20px 24px;
+  font-size: 12px;
+  color: #5C5E62;
+}
+
+/* ---------- Страница плитки ---------- */
+
+.modes {
+  width: 100%;
+  height: calc(100% - 72px);
+  overflow-y: auto;
+  background: #FFFFFF;
+}
+
+.filter {
+  display: flex;
+  gap: 8px;
+  padding: 0 20px 16px;
+}
+
+.filter-input {
+  flex: 1;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #F4F4F4;
+  font-size: 13px;
+}
+
+.filter-button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #3E6AE1;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.filter-button:hover {
+  background: #3457B2;
+}
+
+.mode-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 0 20px 24px;
+}
+
+.mode-card {
+  display: block;
+  padding: 8px;
+  border-radius: 8px;
+  background: #F4F4F4;
+  text-decoration: none;
+}
+
+.mode-card:hover {
+  background: #E8E8E8;
+}
+
+.mode-card-image {
+  width: 100%;
+  height: 120px;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+  background: #5C5E62;
+}
+
+.mode-card-title {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.mode-card-likes {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #5C5E62;
+}
+
+.mode-card-likes svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: #5C5E62;
+  stroke-width: 1.8;
+}
+
+.modes-empty {
+  grid-column: 1 / -1;
+  font-size: 13px;
+  color: #5C5E62;
+}
+
+.draft,
+.modes {
+  scrollbar-width: none;
+}
+
+.draft::-webkit-scrollbar,
+.modes::-webkit-scrollbar {
+  display: none;
+}
